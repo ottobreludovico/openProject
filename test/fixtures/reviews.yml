@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  creator: one
+  assigned_to: one
+  project: one
+  note: MyText
+  skills: 1
+
+two:
+  creator: two
+  assigned_to: two
+  project: two
+  note: MyText
+  skills: 1

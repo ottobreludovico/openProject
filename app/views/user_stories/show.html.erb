@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @user_story.project %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @user_story.creator %>
+</p>
+
+<p>
+  <strong>Worker:</strong>
+  <%= @user_story.worker %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @user_story.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @user_story.description %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @user_story.deadline %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @user_story.state %>
+</p>
+
+<%= link_to 'Edit', edit_user_story_path(@user_story) %> |
+<%= link_to 'Back', user_stories_path %>

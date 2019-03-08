@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_08_212208) do
+ActiveRecord::Schema.define(version: 2019_03_08_215919) do
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "creator_id"
+    t.text "msg"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_messages_on_creator_id"
+    t.index ["project_id"], name: "index_messages_on_project_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.integer "teamleader_id"
@@ -20,6 +30,34 @@ ActiveRecord::Schema.define(version: 2019_03_08_212208) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["teamleader_id"], name: "index_projects_on_teamleader_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "creator_id"
+    t.integer "assigned_to_id"
+    t.integer "project_id"
+    t.text "note"
+    t.integer "skills"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assigned_to_id"], name: "index_reviews_on_assigned_to_id"
+    t.index ["creator_id"], name: "index_reviews_on_creator_id"
+    t.index ["project_id"], name: "index_reviews_on_project_id"
+  end
+
+  create_table "user_stories", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "creator_id"
+    t.integer "worker_id"
+    t.string "title"
+    t.text "description"
+    t.date "deadline"
+    t.integer "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["creator_id"], name: "index_user_stories_on_creator_id"
+    t.index ["project_id"], name: "index_user_stories_on_project_id"
+    t.index ["worker_id"], name: "index_user_stories_on_worker_id"
   end
 
   create_table "users", force: :cascade do |t|
