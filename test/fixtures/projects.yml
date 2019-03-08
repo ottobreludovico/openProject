@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teamleader: one
+  title: MyString
+  description: MyText
+  number_of_member: 1
+
+two:
+  teamleader: two
+  title: MyString
+  description: MyText
+  number_of_member: 1
