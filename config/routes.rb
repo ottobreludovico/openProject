@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :joins
   resources :messages
   resources :user_stories
   resources :reviews

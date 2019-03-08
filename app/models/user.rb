@@ -21,4 +21,7 @@ class User < ActiveRecord::Base
 
     #un utente può ricevere una o più recensioni, una recensione può essere assegnata ad un solo utente
     has_many :reviews_assigned_to, class_name: 'Review', foreign_key: 'assigned_to_id'
+
+    #un utente può partecipare ad uno o più progetti.
+    has_many :joins
 end

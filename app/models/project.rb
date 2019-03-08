@@ -13,5 +13,7 @@ class Project < ApplicationRecord
   #un progetto dispone di una chat con uno o più messaggi, ogni messaggio appartiene ad un unico progetto
   has_many :messages
 
+  #un progetto può avere uno o più partecipanti
+  has_many :joins
 
 end
