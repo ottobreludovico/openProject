@@ -12,6 +12,10 @@ module SessionsHelper
         !current_user.nil?
     end
 
+    def authenticated?
+        redirect_to '/login' unless current_user
+    end    
+
     # Logs out the current user.
     def log_out
         session.delete(:user_id)

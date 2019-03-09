@@ -1,6 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/*import scss subclasses*/
+@import "home.scss";
+@import "sessions.scss";
+@import "users.scss";
+@import "projects.scss";
+
 /* universal */
 
 html {
@@ -101,15 +107,4 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
-}
-
-/* Errors */
-
-#notice{
-  color: rgb(250, 0, 0);
-  font-size: 1.4em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
 }

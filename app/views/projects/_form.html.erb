@@ -12,13 +12,8 @@
       </div>
     <% end %>
 
-    <!--
-    Funziona solo se si cambia "teamleader_name" con "id" di un utente già registrato
-    TODO:teamleader_name=utente[id][nome] con sessioni
-    -->
     <div class="field">
-      <%= form.label :teamleader_id %>
-      <%= form.text_field :teamleader_id, :value => "teamleader_name", :readonly => "readonly" %>
+      <%= form.text_field :teamleader_id, :value => current_user[:id] , :type => "hidden" %>
     </div>
 
     <div class="field">

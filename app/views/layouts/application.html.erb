@@ -5,8 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
+    <!--css/scss-->
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'main', media: 'all'%>
+    
+    <!--javascript-->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= render 'layouts/shim' %>

@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authenticated?
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
@@ -14,7 +15,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
-    @project = Project.new
+      @project = Project.new
   end
 
   # GET /projects/1/edit
