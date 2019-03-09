@@ -24,4 +24,5 @@ class User < ActiveRecord::Base
 
     #un utente può partecipare ad uno o più progetti.
     has_many :joins
+    
 end
