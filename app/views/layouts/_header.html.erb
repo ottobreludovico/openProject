@@ -1,18 +1,25 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <%= link_to "OpenProject", home_path, id: "logo" %>
-        <nav>
-            <ul class="nav navbar-nav pull-right">
-                <li><%= link_to "Home", home_path %></li>
-                <li><%= link_to "Projects",   '#' %></li>
-                <% if logged_in? %>
-                    <li><%= link_to "Profile",   '#' %></li>
-                    <li><%= link_to "Logout", logout_path %></li>
-                <% else %>
-                    <li><%= link_to "Signup", signup_path %></li>
-                    <li><%= link_to "Login", login_path %></li>
-                <% end %>
-            </ul>
+<header>
+    <div class="row">
+        <nav class="navbar navbar-expand-lg menu">
+            <a id="logo" href="#">OpenProject</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" id="menu-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <div class="navbar-nav ml-auto">
+                    <%= link_to 'home', home_path, class: "nav-item nav-link menu-item-active" %>
+                    <%= link_to 'projects', '#', class: "nav-item nav-link menu-item" %>
+                    <% if logged_in? %>
+                        <%= link_to 'profile', '#', class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'logout', logout_path, class: "nav-item nav-link menu-item" %>
+                    <% else %>
+                        <%= link_to 'signup', signup_path, class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'login', login_path, class: "nav-item nav-link menu-item" %>
+                    <% end %>
+                </div>
+            </div>
         </nav>
     </div>
 </header>
+
+

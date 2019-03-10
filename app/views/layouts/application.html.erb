@@ -4,24 +4,17 @@
     <title>OpenProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <!--css/scss-->
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_link_tag 'main', media: 'all'%>
-    
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!--javascript-->
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
     <%= render 'layouts/shim' %>
   </head>
 
   <body>
-
     <%= render 'layouts/header' %>
-
-    <div class="container">
+    <div class="row container">
       <%= yield %>
     </div>
-
   </body>
 </html>
