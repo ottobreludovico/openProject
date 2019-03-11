@@ -1,21 +1,26 @@
 <div class="row center">
     <div class="col-md-12">
-        <%= form_for(:session, url: login_path) do |f| %>
+        <%= form_for Project.new do |f| %>
     </div>
-    <% if logged_in? %>
-        <div class="col-md-12 space">
+    <% if logged_in? %> 
+        <div class="col-md-4 "></div>
+        <div class="col-md-4 ">
+            <%= image_tag avatar_url(current_user, 100) %>
+        </div>
+        <div class="col-md-4 "></div>
+        <div class="col-md-12 space_2">
             <h1>Welcom <%= current_user.first_name %></h1>
-        </div> 
+        </div>
     <% else %>
         <div class="col-md-12 space">
             <h1>Welcom user</h1>
         </div>
     <% end %>
     <div class="col-md-10 space" id="search_bar">
-        <%= f.text_field :email, :placeholder => "keyword" %>
+        <%= f.text_field :title, :placeholder => "keyword" %>
     </div>
     <div class="col-md-2 space">
-        <%= f.submit "Log in", class: "btn btn-primary" %>
+        <%= f.submit "Log in", class: "btn btn-primary btn-block" %>
     </div>
         <% end %>
 </div>
