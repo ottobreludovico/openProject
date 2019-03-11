@@ -155,4 +155,30 @@
  input {
    height: auto !important;
  }
+
+.container{
+   margin-top: 3.5%;
+ }
+
+ .message{
+  margin: 0 0 2em;
+  padding: 1em 15px 0 50px;
+  border-style: solid;
+  border-width: 2px 0}
+
+.message p{
+  margin: 0 0 1em;
+}
+
+.message.error{
+  background: #FFD8D6 url(error20.png) no-repeat 15px 50%;
+  border-color: #FF0038;
+}
  
+li{
+  list-style-type:none;
+}
+
+.f {
+	min-height: 400px;
+}

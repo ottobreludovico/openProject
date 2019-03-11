@@ -33,7 +33,7 @@ class UsersController < ApplicationController
         log_in @user
         format.html { redirect_to home_url }
       else
-        format.html { render :new }
+        format.html { render :create }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
