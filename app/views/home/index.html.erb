@@ -1,8 +1,22 @@
-<div class="row">
-    <div class="col-md-12 center">
-        <h1>Home Page</h1>
+<div class="row center">
+    <div class="col-md-12">
+        <%= form_for(:session, url: login_path) do |f| %>
     </div>
-    <div class="col-md-12 center">
-        <p>This is the home page</p>
+    <% if logged_in? %>
+        <div class="col-md-12 space">
+            <h1>Welcom <%= current_user.first_name %></h1>
+        </div> 
+    <% else %>
+        <div class="col-md-12 space">
+            <h1>Welcom user</h1>
+        </div>
+    <% end %>
+    <div class="col-md-10 space" id="search_bar">
+        <%= f.text_field :email, :placeholder => "keyword" %>
     </div>
+    <div class="col-md-2 space">
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+    </div>
+        <% end %>
 </div>
+<div class="row">

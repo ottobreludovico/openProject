@@ -179,6 +179,19 @@ li{
   list-style-type:none;
 }
 
-.f {
-	min-height: 400px;
+.max_width{
+  width: 100%;
+}
+
+.space{
+  margin-top:10%;
+}
+
+#search_bar input{
+  border: 1px solid #323232; /* Bordo */
+  /*height: 50px; /* Altezza */
+  width: 100%;
+  line-height: 35px;
+  padding-left: 2%;
+  border-radius: 5px 5px 5px 5px;
 }
