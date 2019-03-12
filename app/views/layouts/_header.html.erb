@@ -9,12 +9,13 @@
                 <div class="navbar-nav ml-auto">
                     <%= link_to 'home', home_path, class: "nav-item nav-link menu-item-active" %>
                     <%= link_to 'projects', '#', class: "nav-item nav-link menu-item" %>
-                    <% if logged_in? %>
+                    <% if user_signed_in? %>
                         <%= link_to 'profile', '#', class: "nav-item nav-link menu-item" %>
-                        <%= link_to 'logout', logout_path, class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item nav-link menu-item" %>
+                        
                     <% else %>
-                        <%= link_to 'signup', signup_path, class: "nav-item nav-link menu-item" %>
-                        <%= link_to 'login', login_path, class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'signup', new_user_registration_path , class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'login', new_user_session_path , class: "nav-item nav-link menu-item" %>
                     <% end %>
                 </div>
             </div>
