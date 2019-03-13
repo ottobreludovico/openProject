@@ -14,8 +14,8 @@
                         <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item nav-link menu-item" %>
                         
                     <% else %>
-                        <%= link_to 'signup', new_user_registration_path , class: "nav-item nav-link menu-item" %>
-                        <%= link_to 'login', new_user_session_path , class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'signup', signup_path , class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'login', login_path , class: "nav-item nav-link menu-item" %>
                     <% end %>
                 </div>
             </div>

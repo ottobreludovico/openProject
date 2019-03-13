@@ -1,15 +1,18 @@
 Rails.application.routes.draw do 
   devise_for :users
-  root 'home#index'
-  #resources :joins
-  #resources :messages
-  #resources :user_stories
-  #resources :reviews
+  
+  devise_scope :user do
+    get 'login', to: 'devise/sessions#new'
+  end
+
+  devise_scope :user do
+    get 'signup', to: 'devise/registrations#new'
+  end
+
   resources :projects
-  get 'login' => 'sessions#new'
+
+  root 'home#index'
   get 'home' => 'home#index'
-  post 'login' => 'sessions#create'
-  get 'logout' => 'sessions#delete'
-  #resources :users
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
