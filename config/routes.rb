@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     get 'signup', to: 'devise/registrations#new'
   end
 
-  resources :projects
+  authenticated :user do
+    resources :projects
+  end
+
+  get 'projects', to: redirect('/login')
 
   root 'home#index'
   get 'home' => 'home#index'

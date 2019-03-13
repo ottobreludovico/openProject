@@ -8,9 +8,9 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <div class="navbar-nav ml-auto">
                     <%= link_to 'home', home_path, class: "nav-item nav-link menu-item-active" %>
-                    <%= link_to 'projects', '#', class: "nav-item nav-link menu-item" %>
+                    <%= link_to 'projects', projects_path, class: "nav-item nav-link menu-item" %>
                     <% if user_signed_in? %>
-                        <%= link_to 'profile', '#', class: "nav-item nav-link menu-item" %>
+                        <%= link_to 'profile', edit_user_registration_path, class: "nav-item nav-link menu-item" %>
                         <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item nav-link menu-item" %>
                         
                     <% else %>
