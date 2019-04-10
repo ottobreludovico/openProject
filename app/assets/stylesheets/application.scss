@@ -16,7 +16,10 @@
  @import "bootstrap";
 
  /* universal */
- 
+ form {
+   width: 100%;
+ }
+
  html {
    overflow-y: scroll;
  }

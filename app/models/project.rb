@@ -16,4 +16,12 @@ class Project < ApplicationRecord
   #un progetto può avere uno o più partecipanti
   has_many :joins
 
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
+
 end

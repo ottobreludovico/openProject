@@ -1,4 +1,5 @@
 Rails.application.routes.draw do 
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   
   devise_scope :user do
@@ -12,9 +13,8 @@ Rails.application.routes.draw do
   authenticated :user do
     resources :projects
   end
-
-  get 'projects', to: redirect('/login')
-
+  get 'projects/new', to: redirect('/login')
+  get 'projects' => 'projects#index'
   root 'home#index'
   get 'home' => 'home#index'
 
