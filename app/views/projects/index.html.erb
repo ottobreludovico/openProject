@@ -2,39 +2,21 @@
   <div class="col-md-12 center">
     <p id="notice"><%= notice %></p>
   </div>
-  <div class="col-md-12 center">
-    <h1>Projects</h1>
-  </div>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <table style="text-align: center; margin: 0px auto; margin-top: 5%;">
-      <thead>
-        <tr>
-          <th>Teamleader</th>
-          <th>Title</th>
-          <!--<th>Description</th>-->
-          <th>Number of member</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>      
+  <div class="col-md-2"></div>
+  <div class="col-md-3"><h2>Filtri:</h2></div>
+  <div class="col-md-6">
+    <h1>Projects</h1>
+      <ul style="text-align: center; margin-left: 0px;">   
         <% @projects.each do |project| %>
-          <tr>
-            <td><%= project.teamleader.first_name %> <%= project.teamleader.last_name %></td>
-            <td><%= project.title %></td>
-            <!--<td><%= project.description %></td>-->
-            <td><%= project.number_of_member %></td>
-            <!--<td><%= link_to 'Show', project %></td>
-            <td><%= link_to 'Edit', edit_project_path(project) %></td>
-            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-          </tr>
+          <li class="li-p">
+            <h2><%= project.title %></h2>
+            <p>author: <%= project.teamleader.first_name %> <%= project.teamleader.last_name %></p>
+          </li>
         <% end %>
-      </tbody>
+      </ul>
     </table>
   </div>
-  <div class="col-md-12">
-    <!--<%= link_to 'New Project', new_project_path %>-->
-  </div>
+  <div class="col-md-1"></div>
 </div>

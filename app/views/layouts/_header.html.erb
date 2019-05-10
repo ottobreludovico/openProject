@@ -34,7 +34,10 @@
                 <%= link_to 'projects', projects_path, class: "nav-item item" %>
 
                 <% if user_signed_in? %>
-                    <%= link_to 'profile', edit_user_registration_path, class: "nav-item item" %>
+
+                    <%= link_to edit_user_registration_path, class: "nav-item item" do%>
+                        <%= current_user.first_name %>
+                    <% end %>
                     <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item item" %>
                     
                 <% else %>
