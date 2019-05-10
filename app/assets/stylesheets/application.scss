@@ -18,6 +18,7 @@
  /* universal */
  form {
    width: 100%;
+   margin: 0px auto;
  }
 
  html {
@@ -25,7 +26,8 @@
  }
  
  body {
-
+   margin: 0px;
+   padding: 0px;
  }
  
  section {
@@ -35,13 +37,36 @@
  textarea {
    resize: vertical;
  }
+
+ .field{
+   margin: 0px auto;
+   max-width: 90%;
+ }
  
  .center {
    text-align: center;
  }
  
- .center h1 {
- 
+ img{
+   width: 70px;
+   height: 70px;
+   margin-left: 8%;
+   border: 2px solid grey;
+ }
+ .one{
+   background-color: rgb(236, 236, 236);
+ }
+
+ .two{
+   background-color: aqua;
+ }
+
+ .three{
+   background-color: orange;
+ }
+
+ .four{
+   background-color: blue;
  }
  
  
@@ -52,7 +77,8 @@
  }
  
  h1 {
-     font-size: 3em;
+     font-size: 2.4em;
+     margin-bottom: 0.8em;
      letter-spacing: -2px;
      text-align: center;
  }
@@ -62,7 +88,7 @@
      letter-spacing: -1px;
      text-align: center;
      font-weight: normal;
-     color:white;
+     color:black;
  }
  
  p {
@@ -147,16 +173,41 @@
     width: 100%; 
     margin: 0px auto;
  }
+
+ input{
+   /*
+  display: block;
+  margin: 0px auto;*/
+  padding:5px; 
+  margin-bottom: 0.5em;
+  border:2px solid #ccc; 
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input:focus {
+  border-color:black;
+}
+
+input[type=submit] {
+  display: block;
+  margin: 0px auto;
+  padding:5px 15px; 
+  color: white;
+  border:0 none;
+  height: 2.5em;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  width: 50%;
+}
  
- input, textarea, select, .uneditable-input {
+ textarea, select, .uneditable-input {
    border: 0.5px solid #bbb;
    width: 100%;
    margin-bottom: 15px;
    @include box_sizing;
- }
- 
- input {
-   height: auto !important;
  }
 
 .container{
