@@ -68,6 +68,45 @@
  .four{
    background-color: blue;
  }
+
+ .item{
+   text-decoration: none;
+   margin-left: 10%;
+   font-size: 1.1em;
+ }
+
+ .item:hover{
+   text-decoration: none;
+   background-color: transparent;
+   color: white;
+ }
+
+ .navbar-r{
+   text-align: center;
+   width: 30%;
+ }
+
+ .letter-s{
+   letter-spacing: 3px;
+ }
+
+ .letter-s:hover{
+    text-decoration: none;
+    background-color: transparent;
+ }
+
+ #search_bar input[type=submit] {
+  display: block;
+  margin: 0px auto;
+  padding:5px 15px; 
+  color: white;
+  border:0 none;
+  height: 85%;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  width: 100%;
+}
  
  
  /* typography */
@@ -176,8 +215,9 @@
 
  input{
    /*
-  display: block;
-  margin: 0px auto;*/
+    display: block;
+    margin: 0px auto;
+  */
   padding:5px; 
   margin-bottom: 0.5em;
   border:2px solid #ccc; 
