@@ -22,9 +22,11 @@
     
       <div class="field">
         <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
+        <!--
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+        -->
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
     
@@ -40,10 +42,9 @@
     <h1>or</h1>
       
       <%= image_tag("google_icon.png") %>
-      
-      
       <%= image_tag("github_icon.png")  %>
       <%= image_tag("fb_icon.ico")  %>
+
     </div>
   <div class="col-md-4"></div>
 </div>
