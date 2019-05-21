@@ -5,7 +5,7 @@
         <% if user_signed_in? %>
             <div class="col-md-4 "></div>
             <div class="col-md-4 ">
-                <%= image_tag avatar_url(current_user, 100) %>
+              <%= image_tag current_user.gravatar_url %>
             </div>
             <div class="col-md-4 "></div>
             <div class="col-md-12 space_2">
@@ -30,10 +30,9 @@
                         <div class="col-md-2">
                             <%= submit_tag "Search", class: "bg-dark" %>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             <% end %>
         </div>
     </div>
 </div>
-

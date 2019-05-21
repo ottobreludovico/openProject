@@ -1,7 +1,9 @@
-
+<h1><%= image_tag current_user.gravatar_url %> </h1>
 <h1><%= current_user.first_name %></h1>
 <h1><%= current_user.last_name %></h1>
 <h1><%= current_user.email %></h1>
+
+
 
 <% current_user.projects.each do |project| %>
   <%= link_to project.title, project_path(project) %>
