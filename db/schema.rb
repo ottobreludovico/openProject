@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_125250) do
+ActiveRecord::Schema.define(version: 2019_05_21_123617) do
 
   create_table "joins", force: :cascade do |t|
     t.integer "user_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2019_03_13_125250) do
     t.integer "number_of_member"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["teamleader_id"], name: "index_projects_on_teamleader_id"
   end
 
