@@ -68,6 +68,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Authentication with devise
 gem 'devise'
 gem 'gravtastic'
+gem 'rails_admin'
 
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
