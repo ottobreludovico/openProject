@@ -4,22 +4,15 @@
     <title>OpenProject</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <!--css/scss-->
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <!--javascript-->
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= render 'layouts/shim' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
 
 
-  <body>
+  <body ng-app="angularOpenProject">
     <%= render 'layouts/header' %>
     <div class="container">
-      
-
-
-
       <% if notice %>
         <%= content_tag :p, notice, :class => "alert alert-success" if notice.length > 0 %>
       <% end %>

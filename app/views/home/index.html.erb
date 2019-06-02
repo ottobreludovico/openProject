@@ -1,7 +1,49 @@
-<div class="row center">
+<div ng-controller="ProjectsCtrl">
+
+    <div class="row center">
+        <div class="space col-md-12">
+            <div class="row">
+                <div class="space col-md-12" id="search_bar">
+                    <div class="row">
+                        <div class="col-md-10">
+                        <input type="text" id="search" placeholder="Keyword" />
+                        </div>
+                        <div class="col-md-2">
+                            <button ng-click='searchProject()' class = "bg-dark">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="project in projects">
+              <td> {{project.title}} </td>
+              <td> {{project.teamleader_id}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+</div>
 
 
-    <!--
+
+
+
+
+<!--
         <% if user_signed_in? %>
             <div class="col-md-4 "></div>
             <div class="col-md-4 ">
@@ -17,22 +59,3 @@
             </div>
         <% end %>
     -->
-
-
-    <div class="space col-md-12">
-        <div class="row">
-            <%= form_tag("/projects", method: "get") do |f| %>
-                <div class="space col-md-12" id="search_bar">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <%= text_field_tag :search, params['search'], placeholder: "Keyword" %>
-                        </div>
-                        <div class="col-md-2">
-                            <%= submit_tag "Search", class: "bg-dark" %>
-                        </div>
-                    </div>
-                </div>
-            <% end %>
-        </div>
-    </div>
-</div>
