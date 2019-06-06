@@ -25,30 +25,41 @@
     -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-            <%= link_to 'OpenProject', home_path, class: "navbar-brand letter-s" %>
+            <div class="container-fluid">
 
-            <ul class="navbar-nav ml-auto navbar-r">
-            
-                <%= link_to 'Home', home_path, class: "nav-item item" %>
+                <%= link_to 'OpenProject', home_path, class: "navbar-brand letter-s" %>
 
-                <!-- <%= link_to 'projects', projects_path, class: "nav-item item" %> -->
-
-                <% if user_signed_in? %>
-
-                    <%= link_to edit_user_registration_path, class: "nav-item item" do%>
-                        <%= current_user.first_name %>
-                    <% end %>
-                    <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item item" %>
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon" id="menu-icon"></span>
+                    </button>
+                </div>
                     
-                <% else %>
-                    <%= link_to 'signup', signup_path , class: "nav-item item" %>
-                    <%= link_to 'login', login_path , class: "nav-item item" %>
-                <% end %>
 
+                <div class="collapse navbar-collapse" id="navbarText">
 
-                
-                
-            </ul>
+                    <ul class="navbar-nav ml-auto navbar-r">
+                    
+                        <%= link_to 'Home', home_path, class: "nav-item item" %>
+
+                        <!-- <%= link_to 'projects', projects_path, class: "nav-item item" %> -->
+
+                        <% if user_signed_in? %>
+
+                            <%= link_to edit_user_registration_path, class: "nav-item item" do%>
+                                <%= current_user.first_name %>
+                            <% end %>
+                            <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item item" %>
+                            
+                        <% else %>
+                            <%= link_to 'signup', signup_path , class: "nav-item item" %>
+                            <%= link_to 'login', login_path , class: "nav-item item" %>
+                        <% end %> 
+                        
+                    </ul>
+                </div>
+
+            </div>
 
         </nav>
 
