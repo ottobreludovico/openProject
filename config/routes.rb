@@ -12,14 +12,18 @@ Rails.application.routes.draw do
     get 'signup', to: 'devise/registrations#new'
   end
 
+  namespace :user do
+    root "home#index"
+  end
+
 
   resources :projects
   
   get 'projects/new', to: redirect('/login')
-  get 'projects' => 'projects#index'
+  get 'projects', to: redirect('/login')
   
   root 'home#index'
-  
+
   get 'home' => 'home#index'
 
   resources :users
