@@ -24,9 +24,9 @@
         <table class="table table-striped" style="text-align: justify;">
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Author's reviews</th>
+              <th ng-click = "sortProject(this,'title')" >Title</th>
+              <th ng-click = "sortProject(this,'first_name')">Author</th>
+              <th ng-click = "sortProject(this,'reviews')">Author's reviews</th>
               <th></th>
             </tr>
           </thead>
@@ -34,7 +34,7 @@
             <tr ng-repeat="project in projects">
               <td> {{project.title}} </td>
               <td> {{project.first_name}}   {{project.last_name}} </td>
-              <td> 4/5 </td>
+              <td> {{project.reviews}} / 5 </td>
               <td> <button class = "bg-dark">View</button></td>
             </tr>
           </tbody>
@@ -44,6 +44,7 @@
 
 </div>
 
+<!-- script jquery -->
 
 <script>
 
