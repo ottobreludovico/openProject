@@ -1,16 +1,28 @@
 <div ng-controller="ProjectsCtrl">
 
-    <div class="row center">
+    <div class="row">
         <div class="space col-md-12">
             <div class="row">
                 <div class="space col-md-12" id="search_bar">
                     <div class="row">
-                        <div class="col-md-10">
-                        <input type="text" id="search" placeholder="Keyword" />
-                        </div>
-                        <div class="col-md-2">
-                            <button ng-click='searchProject()' class = "bg-dark" id="btns">Search</button>
-                        </div>
+                        <% if user_signed_in? %>
+                          <div class="col-md-8">
+                          <input type="text" id="search" placeholder="Keyword" />
+                          </div>
+                          <div class="col-md-2">
+                              <button ng-click='searchProject()' class = "bg-dark" id="btns">Search</button>
+                          </div>  
+                          <div class="col-md-2">
+                              <button ng-click='searchProject()' class = "bg-dark" id="btns">Create</button>
+                          </div>
+                        <% else %>
+                          <div class="col-md-10">
+                          <input type="text" id="search" placeholder="Keyword" />
+                          </div>
+                          <div class="col-md-2">
+                              <button ng-click='searchProject()' class = "bg-dark" id="btns">Search</button>
+                          </div>
+                        <% end %>
                     </div>
                 </div>
             </div>
@@ -21,18 +33,18 @@
     
     <div id="result" class="row space">
       <div class="col-md-12">
-        <table class="table table-striped" style="text-align: justify;">
+        <table class="table table-striped" style="text-align: center;">
           <thead>
             <tr>
-              <th ng-click = "sortProject(this,'title')" >Title</th>
-              <th ng-click = "sortProject(this,'first_name')">Author</th>
-              <th ng-click = "sortProject(this,'reviews')">Author's reviews</th>
+              <th ng-click = "sortProject(this,'title')" class="td-active">Title <p style='font-size: 10px;'>click to order</p></th>
+              <th ng-click = "sortProject(this,'first_name')"class="td-active">Author <p style='font-size: 10px;'>click to order</p></th>
+              <th ng-click = "sortProject(this,'reviews')" class="td-active">Author's reviews <p style='font-size: 10px;'>click to order</p></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <tr ng-repeat="project in projects">
-              <td> {{project.title}} </td>
+              <th> {{project.title}} </th>
               <td> {{project.first_name}}   {{project.last_name}} </td>
               <td> {{project.reviews}} / 5 </td>
               <td> <button class = "bg-dark">View</button></td>

@@ -328,3 +328,13 @@ button{
 .color-white:hover{
   color: grey;
 }
+
+.td-active{
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+}
+
+.td-active:hover{
+  background-color: rgb(221, 221, 221);
+}
