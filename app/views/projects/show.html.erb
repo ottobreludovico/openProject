@@ -22,3 +22,42 @@
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+
+<div class="row">
+    <div class="col-md-4">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col">Ruolo</th>
+                <th scope="col">Linguaggio</th>
+                <th scope="col">Partecipante</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%= @components.size %>
+            <% @components.each do |component| %>
+              <%= @component %>
+            <% end %>
+                <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                </tr>
+                <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                </tr>
+                <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                </tr>
+            </tbody>
+            </table>
+        </table>
+    </div>
+    <div class="col-md-8">
+        
+    </div>
+</div>

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_31_161222) do
+ActiveRecord::Schema.define(version: 2019_06_12_205024) do
 
   create_table "joins", force: :cascade do |t|
     t.integer "user_id"
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role"
     t.index ["project_id"], name: "index_joins_on_project_id"
     t.index ["user_id"], name: "index_joins_on_user_id"
   end
