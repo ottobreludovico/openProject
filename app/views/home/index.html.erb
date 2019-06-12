@@ -47,7 +47,9 @@
               <th> {{project.title}} </th>
               <td> {{project.first_name}}   {{project.last_name}} </td>
               <td> {{project.reviews}} / 5 </td>
-              <td> <button class = "bg-dark">View</button></td>
+              <td>
+                <a href="/projects/{{project.id}}">View</a>
+              </td>
             </tr>
           </tbody>
         </table>
