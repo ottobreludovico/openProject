@@ -13,7 +13,7 @@
                         <% if user_signed_in? %>
                             <%= link_to 'profile', edit_user_registration_path, class: "nav-item nav-link menu-item" %>
                             <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item nav-link menu-item" %>
-                            
+
                         <% else %>
                             <%= link_to 'signup', signup_path , class: "nav-item nav-link menu-item" %>
                             <%= link_to 'login', login_path , class: "nav-item nav-link menu-item" %>
@@ -34,28 +34,28 @@
                         <span class="navbar-toggler-icon" id="menu-icon"></span>
                     </button>
                 </div>
-                    
+
 
                 <div class="collapse navbar-collapse" id="navbarText">
 
                     <ul class="navbar-nav ml-auto navbar-r">
-                    
+
                         <%= link_to 'Home', home_path, class: "nav-item item" %>
 
                         <!-- <%= link_to 'projects', projects_path, class: "nav-item item" %> -->
 
                         <% if user_signed_in? %>
 
-                            <%= link_to edit_user_registration_path, class: "nav-item item" do%>
+                            <%= link_to user_path(current_user), class: "nav-item item" do%>
                                 <%= current_user.first_name %>
                             <% end %>
                             <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item item" %>
-                            
+
                         <% else %>
                             <%= link_to 'signup', signup_path , class: "nav-item item" %>
                             <%= link_to 'login', login_path , class: "nav-item item" %>
-                        <% end %> 
-                        
+                        <% end %>
+
                     </ul>
                 </div>
 
@@ -64,5 +64,3 @@
         </nav>
 
 </header>
-
-
