@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require angular
+//= require angular-drag-and-drop-lists/angular-drag-and-drop-lists.js
 //= require_tree .

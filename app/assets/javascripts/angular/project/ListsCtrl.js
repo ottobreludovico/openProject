@@ -1,4 +1,4 @@
-var app = angular.module('angularOpenProject');
+var app = angular.module('angularOpenProject',['dndLists']);
 
 app.controller("ListsCtrl", function($scope) {
 
@@ -12,6 +12,8 @@ app.controller("ListsCtrl", function($scope) {
         $scope.models.lists.A.push({label: "Item A" + i});
         $scope.models.lists.B.push({label: "Item B" + i});
     }
+
+    console.log($scope);
 
     // Model to JSON for demo purpose
     $scope.$watch('models', function(model) {
