@@ -10,12 +10,11 @@
         </div>
         <div class="col-sm-20 col-md-20">
             <blockquote>
-                <p><%= current_user.first_name %> </p> <small><cite title="Source Title">Palombara Sabina, Rome  <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                <p><%= current_user.first_name %> </p> <small><cite title="Source Title"><%= current_user.location %> <i class="glyphicon glyphicon-map-marker"></i></cite></small>
             </blockquote>
             <p> <i class="glyphicon glyphicon-envelope"></i> <%= current_user.email %>
-                <br
-                /> <i class="glyphicon glyphicon-globe"></i>
-                <br /> <i class="glyphicon glyphicon-gift"></i> February 25, 1996</p>
+                <br /> <i class="glyphicon glyphicon-globe"></i>
+                <br /> <i class="glyphicon glyphicon-gift"></i> <%= current_user.birthday %></p>
         </div>
         <div class="col-sm-20 col-md-20">
           description: <%= current_user.description %>

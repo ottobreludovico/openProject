@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :lists
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations' }
 
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'
@@ -19,10 +19,10 @@ Rails.application.routes.draw do
 
 
   resources :projects
-  
+
   get 'projects/new', to: redirect('/login')
   get 'projects', to: redirect('/login')
-  
+
   root 'home#index'
 
   get 'home' => 'home#index'
