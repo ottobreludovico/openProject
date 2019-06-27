@@ -16,4 +16,3 @@
 //= require bootstrap-sprockets
 //= require angular
 //= require_tree .
-

@@ -21,7 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 # Use angular
-gem 'bower-rails'
+gem "bower-rails", "~> 0.11.0"
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

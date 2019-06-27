@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_12_205024) do
+ActiveRecord::Schema.define(version: 2019_06_25_224845) do
+
+  create_table "cards", force: :cascade do |t|
+    t.integer "list_id"
+    t.string "name"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["list_id"], name: "index_cards_on_list_id"
+  end
 
   create_table "joins", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +29,13 @@ ActiveRecord::Schema.define(version: 2019_06_12_205024) do
     t.string "role"
     t.index ["project_id"], name: "index_joins_on_project_id"
     t.index ["user_id"], name: "index_joins_on_user_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
