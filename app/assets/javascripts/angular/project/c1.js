@@ -10,6 +10,7 @@ app.controller("c1", ["$http", "$scope" , function($http, $scope){
   }); 
 */
 var user;
+var currentProject=1;
 
 function editState(item,new_state){
   var data= {
@@ -67,7 +68,7 @@ function editState(item,new_state){
   {id: 2, name: "DOING",  cards: []},
   {id: 3, name: "DONE", cards: []}]
 
-  var currentProject=1;
+  
 
 	$http({
 		method: 'GET',

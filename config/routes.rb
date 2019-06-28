@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   get 'projects/:id/chat' => 'chats#index'
 
+  get 'projects/:id/user_stories' => 'lists#index'
+
   post 'projects/:id/chat' => 'chats#newMessage'
 
   post 'projects/:id/editrequest' => 'projects#editRequest'

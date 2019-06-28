@@ -18,7 +18,7 @@
             Summary
           </a>
           <a href="/projects/<%= @project.id %>/chat" class="list-group-item list-ground-dark ">Chat</a>
-          <a href="#" class="list-group-item list-ground-dark ">User Stories</a>
+          <a href="/projects/<%= @project.id %>/user_stories" class="list-group-item list-ground-dark ">User Stories</a>
         </div>
         <% else %>
         <% if @waiting.blank? %>
