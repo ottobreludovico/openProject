@@ -1,4 +1,4 @@
-var app = angular.module('angularOpenProject',['dndLists', ]);
+var app = angular.module('angularOpenProject');
 
 app.controller("c1", ["$http", "$scope" , function($http, $scope){
   
