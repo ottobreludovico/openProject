@@ -1,3 +1,33 @@
 // Place all the styles related to the Projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.button-dark {
+	background-color: #343a40 !important;
+	border-color: #343a40 !important;
+}
+
+.button-dark:hover {
+	background-color: #8c8c8c !important;
+	border-color: #8c8c8c !important;
+}
+
+.list-ground-active-dark {
+	background-color: #343a40 !important;
+	border-color: #343a40 !important;
+}
+
+.list-ground-active-dark:hover {
+	text-decoration: none !important;
+}
+
+.list-ground-dark {
+	color: #000000 !important;
+	text-decoration: none !important;
+}
+
+.list-ground-dark:hover {
+	background-color: #343a40 !important;
+	color: #ffffff !important;
+	text-decoration: none !important;
+}

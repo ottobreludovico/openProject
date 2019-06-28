@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_27_141145) do
+ActiveRecord::Schema.define(version: 2019_06_28_140424) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "list_id"
@@ -21,15 +21,18 @@ ActiveRecord::Schema.define(version: 2019_06_27_141145) do
     t.index ["list_id"], name: "index_cards_on_list_id"
   end
 
-  create_table "joins", force: :cascade do |t|
-    t.integer "user_id"
+  create_table "chat_messages", force: :cascade do |t|
     t.integer "project_id"
+    t.integer "user_id"
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "role"
-    t.index ["project_id"], name: "index_joins_on_project_id"
-    t.index ["user_id"], name: "index_joins_on_user_id"
+    t.index ["project_id"], name: "index_chat_messages_on_project_id"
+    t.index ["user_id"], name: "index_chat_messages_on_user_id"
   end
+
+# Could not dump table "joins" because of following StandardError
+#   Unknown type 'bool' for column 'accepted'
 
   create_table "lists", force: :cascade do |t|
     t.string "name"

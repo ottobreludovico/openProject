@@ -1,63 +1,87 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Teamleader:</strong>
-  <%= @project.teamleader %>
-</p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Number of member:</strong>
-  <%= @project.number_of_member %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
-
 <div class="row">
+    <div class="col-md-8">
+      <h2 style="text-align: left; padding-left: 1.25rem;"><%= @project.title %></h2>
+        <div class="card" style="width: 100%;">
+          <div class="card-body">
+            <p class="card-text"><%= @project.description %></p>
+            <p class="card-text">Participants: 3 of <%= @project.number_of_member %></p>
+          </div>
+        </div>
+    </div>
     <div class="col-md-4">
-        <table class="table">
+        <% if @isMember || (current_user == @project.teamleader) %>
+        <h2>Project Menu</h2>
+          <div class="list-group" style="margin-bottom: 40px; text-align: center;">
+          <a href="/projects/<%= @project.id %>" class="list-group-item list-ground-active-dark active">
+            Summary
+          </a>
+          <a href="/projects/<%= @project.id %>/chat" class="list-group-item list-ground-dark ">Chat</a>
+          <a href="#" class="list-group-item list-ground-dark ">User Stories</a>
+        </div>
+        <% else %>
+        <% if @waiting.blank? %>
+        <button type="button" id="sendbtn" class="btn btn-primary button-dark" onclick="sendRequest(<%= @project.id %>)" style="margin-bottom: 20px;">Send Join Request</button>
+        <% else %>
+        <button type="button" id="sendbtn" class="btn btn-secondary" style="margin-bottom: 20px;" disabled>Request already sent</button>
+        <% end %>
+        <% end %>
+
+        <h2>Members</h2>
+        <table class="table" style="margin-bottom: 30px;">
             <thead class="thead-dark">
                 <tr>
-                <th scope="col">Ruolo</th>
-                <th scope="col">Linguaggio</th>
-                <th scope="col">Partecipante</th>
+                <th scope="col" style="text-align: center;">Role</th>
+                <th scope="col" style="text-align: center;">User</th>
+                <% if @isMember || (current_user == @project.teamleader) %>
+                <th scope="col" style="text-align: center;">Action</th>
+                <% end %>
                 </tr>
             </thead>
             <tbody>
-            <%= @components.size %>
-            <% @components.each do |component| %>
-              <%= @component %>
-            <% end %>
-                <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
+              <tr>
+                <th scope="row" style="text-align: center;">Team Leader</th>
+                <td style="text-align: center; font-size: 13px;"><%= @project.teamleader.first_name %> <%= @project.teamleader.last_name %></td>
+                <% if @isMember || (current_user == @project.teamleader) %>
+                <td></td>
+                <% end %>
+              </tr>
+              <% @participants.each do |p| %>
+                <tr id="p.<%= p.id %>">
+                  <th scope="row" style="text-align: center;"><%= p.role %></th>
+                  <td style="text-align: center; font-size: 13px;"><%= p.user.first_name %> <%= p.user.last_name %></td>
+                  <% if @isMember || (current_user == @project.teamleader) %>
+                    <td style="text-align: center;"><a href="" onclick="removeMember(<%= @project.id %>,<%= p.id %>)" style="color: red; font-size: 13px;">Remove</a></td>
+                  <% end %>
                 </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                </tr>
-                <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                </tr>
+              <% end %>
             </tbody>
             </table>
         </table>
-    </div>
-    <div class="col-md-8">
-        
+        <% if user_signed_in? %>
+          <% if current_user == @project.teamleader %>
+            <h2>Join Requests</h2>
+            <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col" style="text-align: center;">User</th>
+                <th scope="col" style="text-align: center;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+              <% @requests.each do |r| %>
+                <tr id="<%= r.id %>">
+                  <th scope="row" style="text-align: center;"><%= r.user.first_name %> <%= r.user.last_name %></th>
+                  <td style="text-align: center;"><a href="" onclick="editRequestStatus(<%= r.id %>, 1, '<%= r.user.first_name %> <%= r.user.last_name %>', <%= @project.id %>, '<%= r.role %>')" style="color: green; font-size: 14px;">Accept</a> | <a href="" onclick="editRequestStatus(<%= r.id %>, 0, '<%= r.user.first_name %> <%= r.user.last_name %>', <%= @project.id %>, '<%= r.role %>')" style="color: red; font-size: 14px;">Decline</a></td>
+                </tr>
+              <% end %>
+              <div id="lastrow-requests">
+            </tbody>
+            </table>
+        </table>
+          <% end %>
+        <% else %>
+        <% end %>
     </div>
 </div>

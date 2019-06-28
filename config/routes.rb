@@ -17,6 +17,15 @@ Rails.application.routes.draw do
     root "home#index"
   end
 
+  get 'projects/:id/chat' => 'chats#index'
+
+  post 'projects/:id/chat' => 'chats#newMessage'
+
+  post 'projects/:id/editrequest' => 'projects#editRequest'
+
+  post 'projects/:id/sendrequest' => 'projects#sendRequest'
+
+  post 'projects/:id/removemember' => 'projects#removeMember'
 
   resources :projects
 
@@ -32,7 +41,6 @@ Rails.application.routes.draw do
   resources :cards
 
   get 'lists' => 'lists#index'
-
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
