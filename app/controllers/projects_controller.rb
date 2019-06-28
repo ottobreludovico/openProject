@@ -10,17 +10,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @components = Join.joins("INNER JOIN users ON joins.user_id = users.id INNER JOIN projects ON projects.id = joins.project_id").select("users.first_name")
+    #@components = Join.joins("INNER JOIN users ON joins.user_id = users.id INNER JOIN projects ON projects.id = joins.project_id").select("users.first_name")
     @currentuser=current_user.id
     @stories = Project.find(params[:id]).user_stories
-    respond_to do |format|
-      format.html {  }
-      format.json { render :json => {:stories => @stories,
-                                     :currentuser => @currentuser}
-      }
-    end
 
-    
     @participants = Join.where('project_id = ?', params[:id]).where('accepted = ?', 1)
     if current_user.present?
       @member = Join.where('project_id = ?', params[:id]).where('user_id = ?', current_user.id).where('accepted = ?', 1)
@@ -34,6 +27,13 @@ class ProjectsController < ApplicationController
     end
     @waiting = Join.where('project_id = ?', params[:id]).where('user_id = ?', current_user.id).where('accepted = ?', 0)
     @requests = Join.where('project_id = ?', params[:id]).where('accepted = ?', 0)
+
+    respond_to do |format|
+      format.html {  }
+      format.json { render :json => {:stories => @stories,
+                                     :currentuser => @currentuser}
+      }
+    end
   end
 
   def editRequest
