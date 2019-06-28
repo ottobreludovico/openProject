@@ -1,14 +1,14 @@
 class Project < ApplicationRecord
 
   
-  belongs_to :teamleader, class_name: 'User'
+  belongs_to :teamleader, class_name: 'User', foreign_key: 'teamleader_id'
 
 
   validates :title, presence: true, length: { maximum: 30 }
   validates :description, presence: true ,  length: { minimum: 30 }
   
   #un progetto può avere una o più user_story, una user_story è creata all'interno di ogni singolo progetto
-  has_many :user_stories
+  has_many :user_stories, foreign_key: 'project_id' ,class_name: 'UserStory', dependent: :destroy 
 
   #un progetto dispone di una chat con uno o più messaggi, ogni messaggio appartiene ad un unico progetto
   has_many :messages

@@ -1,1 +1,1 @@
-var app = angular.module('angularOpenProject',[]);
+var app = angular.module('angularOpenProject',['dndLists']);
