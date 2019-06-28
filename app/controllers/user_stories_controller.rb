@@ -1,5 +1,6 @@
 class UserStoriesController < ApplicationController
   before_action :set_user_story, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /user_stories
   # GET /user_stories.json
@@ -42,7 +43,7 @@ class UserStoriesController < ApplicationController
   def update
     respond_to do |format|
       if @user_story.update(user_story_params)
-        format.html { redirect_to @user_story, notice: 'User story was successfully updated.' }
+        format.html {}
         format.json { render :show, status: :ok, location: @user_story }
       else
         format.html { render :edit }
@@ -71,4 +72,6 @@ class UserStoriesController < ApplicationController
     def user_story_params
       params.require(:user_story).permit(:project_id, :creator_id, :worker_id, :title, :description, :deadline, :state)
     end
+
+    
 end

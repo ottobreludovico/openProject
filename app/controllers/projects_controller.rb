@@ -11,6 +11,12 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @components = Join.joins("INNER JOIN users ON joins.user_id = users.id INNER JOIN projects ON projects.id = joins.project_id").select("users.first_name")
+    
+    @stories = Project.find(params[:id]).user_stories
+    respond_to do |format|
+      format.html {  }
+      format.json { render json: @stories}
+    end
   end
 
   # GET /projects/new

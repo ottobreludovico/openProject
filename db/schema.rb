@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 2019_06_27_141145) do
     t.integer "number_of_member"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
     t.index ["teamleader_id"], name: "index_projects_on_teamleader_id"
   end
 

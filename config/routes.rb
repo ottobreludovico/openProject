@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :cards
-  resources :lists
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'users/registrations' }
 
@@ -29,7 +26,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :lists
-  resources :cards
+  resources :user_stories
 
   get 'lists' => 'lists#index'
 
