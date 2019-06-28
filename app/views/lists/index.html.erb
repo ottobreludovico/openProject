@@ -66,12 +66,24 @@
             dnd-dragstart="dragStart(ind)"
             dnd-moved="item.cards.splice($index, 1)"
               >
+            <!--{{card.info.title}}
+            {{card.info.creator}}-->
             {{card.title}}
           </li>
         </ul>
     </li>
   </ul>
+  <div class="row" style="margin-top:20px;">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <input type="text" id="title" placeholder="Titolo" />
+    <input type="text" id="description" placeholder="Descrizione" />    
+    <button ng-click='newCard()' class = "bg-dark" id="btns">Inserisci</button>
+  </div>                
+  <div class="col-md-4"></div>  
+</div>
 </div> 
+
 <!--
   <h2>
     Dragged from :         <span ng-if="draggedFrom">lists[{{draggedFrom}}] </span>

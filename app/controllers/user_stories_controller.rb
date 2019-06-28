@@ -70,7 +70,7 @@ class UserStoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_story_params
-      params.require(:user_story).permit(:project_id, :creator_id, :worker_id, :title, :description, :deadline, :state)
+      params.require(:user_story).permit(:project_id, :creator_id, :title, :state)
     end
 
     
