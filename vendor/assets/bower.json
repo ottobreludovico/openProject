@@ -4,6 +4,7 @@
     "angular": "latest",
     "angular-resource": "latest",
     "bootstrap": "latest",
-    "angular-drag-and-drop-lists": "latest"
+    "angular-drag-and-drop-lists": "latest",
+    "angular-route": "latest"
   }
 }

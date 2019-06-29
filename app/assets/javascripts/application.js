@@ -15,4 +15,5 @@
 //= require bootstrap-sprockets
 //= require angular
 //= require angular-drag-and-drop-lists/angular-drag-and-drop-lists.js
+//= require angular-route
 //= require_tree .
