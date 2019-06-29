@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-      <div class="simpleDemo" ng-controller="c1">
+      <div class="simpleDemo" ng-controller="c1" ng-init="init(<%= @project.id %>)">
       <ul class="row" dnd-list="lists"
         dnd-allowed-types="['item']">
           <li class="col-md-4" ng-repeat="item in lists" ng-init="ind = $index"

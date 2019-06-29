@@ -10,7 +10,7 @@ app.controller("c1", ["$http", "$scope" , function($http, $scope){
   }); 
 */
 var user;
-var currentProject=1;
+var currentProject;
 
 function editState(item,new_state){
   var data= {
@@ -70,11 +70,11 @@ function editState(item,new_state){
 
   
 
-	$http({
+	$scope.init = (project_id) => $http({
 		method: 'GET',
-		url: '/projects/1.json'
+		url: '/projects/'+project_id+'.json'
 	}).then(function(data){
-    console.log(data);
+    currentProject=project_id;
     user=data.data.currentuser;
 		for( var i = 0; i < data.data.stories.length; i ++ ){
       /*var info ={
@@ -142,7 +142,7 @@ function editState(item,new_state){
         "user_story": {
           "creator_id": user,
           "worker_id": null,
-          "project_id": 1,
+          "project_id": currentProject,
           "title": title,
           "description": description,
           "deadline": null,
