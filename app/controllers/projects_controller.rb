@@ -7,6 +7,23 @@ class ProjectsController < ApplicationController
     @projects = Project.search(params[:search])
   end
 
+  def us
+    @idUser = 1
+		@idProject = params[:id]
+		@project = Project.find(params[:id])
+    	@participants = Join.where('project_id = ?', params[:id]).where('accepted = ?', 1)
+    	if current_user.present?
+	      @member = Join.where('project_id = ?', params[:id]).where('user_id = ?', current_user.id).where('accepted = ?', 1)
+	      if @member.present?
+	        @isMember = true
+	      else
+	        @isMemeber = false
+	      end
+	    else
+	      @isMemeber = false
+	    end
+  end
+
   # GET /projects/1
   # GET /projects/1.json
   def show

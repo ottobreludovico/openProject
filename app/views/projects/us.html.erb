@@ -1,0 +1,123 @@
+<div class="row">
+    <div class="col-md-8">
+      <div class="simpleDemo" ng-controller="c1" ng-init="init(<%= @project.id %>)">
+      <ul class="row" dnd-list="lists"
+        dnd-allowed-types="['item']">
+          <li class="col-md-4" ng-repeat="item in lists" ng-init="ind = $index">
+            <h1>{{item.name}}</h1>
+            <ul style="min-height: 30px" dnd-list="item.cards"
+                dnd-drop="dropCallback($index, item, lists, ind)"
+                dnd-allowed-types="['card']"
+                >
+              <li ng-repeat="card in item.cards"
+                dnd-type="'card'"
+                dnd-draggable="card"
+                dnd-effect-allowed="move"
+                dnd-dragstart="dragStart(ind)"
+                dnd-moved="item.cards.splice($index, 1)"
+                  >
+                <!--{{card.info.title}}
+                {{card.info.creator}}
+                 <div class="dropdown">
+                  <div class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px;">
+                  {{card.title}}
+                  </div>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Assegna utente</a>
+                    <a class="dropdown-item" href="#">Assegna scadenza</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/user_stories/{{card.id}}/edit">Modifica</a>
+                    <a class="dropdown-item" ng-click="remove(card.id,item,$index)">Elimina</a>
+                  </div>
+                </div>-->
+                <div class="dropdown">
+                    <!--<div id="dLabel" ng-if="<%=@current_user.id%>==card.worker_id && <%=(Time.now).strftime("%F")%> <= card.deadline.deadline" style="background-color: green;" data-toggle="dropdown">
+                       {{card.title}}
+                    </div>-->
+                    <div id="dLabel" ng-if="<%=@current_user.id%>==card.worker_id"  class="s" data-toggle="dropdown">
+                       {{card.title}}
+                    </div>
+                    <div id="dLabel" ng-if="<%=@current_user.id%>!=card.worker_id" data-toggle="dropdown">
+                       {{card.title}}
+                    </div>
+                    <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+                    <li><a class="dropdown-item" href="/user_stories/{{card.id}}">Visualizza</a></li>
+                    <li><a class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" href="/user_stories/{{card.id}}/edit">Modifica</a></li>
+                    <li><a class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" ng-click="remove(card.id,item,$index)">Elimina</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-submenu <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">
+                        <a class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">Assegna scadenza</a>
+                        <div class="dropdown-menu <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">
+                        <form>
+                          <div class="form-group">
+                          <div style="font-size:10px;">Entro il {{card.deadline}}</div>
+                          <input ng-model="date.deadline" type="text" placeholder='aaaa-mm-gg'/>
+                          </div>
+                          <button ng-click="newDate(card.id,date)" class = "btn-sm btn btn-outline-secondary" id="btns">Inserisci</button>
+                        </form>
+                    </li>
+                    
+                    <li class="dropdown-submenu <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">
+                        <a class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">Assegna utente</a>
+                        <ul class="dropdown-menu <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">
+                        <% @participants.each do |r| %>
+                              <a id="<%=r.user.id%>" class="sel dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" ng-click="toUser(card.id,<%=r.user.id%>)" ng-if=" <%=r.user.id%> == card.worker_id"><%=r.user.first_name %></a>
+                              <a id="<%=r.user.id%>" class="dropdown-item  <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" ng-click="toUser(card.id,<%=r.user.id%>)" ng-if=" <%=r.user.id%> != card.worker_id"> <%=r.user.first_name %></a>
+                        <% end %>
+                    </li>
+                    </ul>
+                </div> 
+              </li>
+            </ul>
+        </li>
+      </ul>
+      <div class="row" style="margin-top:20px;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <input type="text" ng-model="c.title" placeholder="Titolo" />
+          <input type="text" ng-model="c.description" placeholder="Descrizione" />    
+          <button ng-click='newCard(c)' class = "bg-dark" id="btns">Inserisci</button>
+        </div>                
+       <div class="col-md-4"></div>  
+      </div>
+    </div> 
+  </div>
+  <div class="col-md-4">
+        <% if @isMember || (current_user == @project.teamleader) %>
+        <h2>Project Menu</h2>
+          <div class="list-group" style="margin-bottom: 40px; text-align: center;">
+          <a href="/projects/<%= @project.id %>" class="list-group-item list-ground-dark">
+            Summary
+          </a>
+          <a href="/projects/<%= @project.id %>/chat" class="list-group-item list-ground-dark">Chat</a>
+          <a href="/projects/<%= @project.id %>/user_stories" class="list-group-item list-ground-active-dark active">User Stories</a>
+        </div>
+        <% else %>
+        <button type="button" id="sendbtn" class="btn btn-primary button-dark" onclick="" style="margin-bottom: 20px;">Send Join Request</button>
+        <% end %>
+
+        <h2>Members</h2>
+        <table class="table" style="margin-bottom: 30px;">
+            <thead class="thead-dark">
+                <tr>
+                <th scope="col" style="text-align: center;">Role</th>
+                <th scope="col" style="text-align: center;">User</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" style="text-align: center;">Team Leader</th>
+                <td style="text-align: center;"><%= @project.teamleader.first_name %> <%= @project.teamleader.last_name %></td>
+              </tr>
+              <% @participants.each do |p| %>
+                <tr>
+                  <th scope="row" style="text-align: center;"><%= p.role %></th>
+                  <td style="text-align: center;"><%= p.user.first_name %> <%= p.user.last_name %></td>
+                </tr>
+              <% end %>
+            </tbody>
+            </table>
+        </table>
+    </div>  
+  </div>
+</div>

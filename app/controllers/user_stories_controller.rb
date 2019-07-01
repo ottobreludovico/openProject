@@ -20,6 +20,7 @@ class UserStoriesController < ApplicationController
 
   # GET /user_stories/1/edit
   def edit
+    @description = UserStory.find(params[:id]).description
   end
 
   # POST /user_stories
@@ -29,8 +30,10 @@ class UserStoriesController < ApplicationController
 
     respond_to do |format|
       if @user_story.save
-        format.html { redirect_to @user_story, notice: 'User story was successfully created.' }
-        format.json { render :show, status: :created, location: @user_story }
+        format.html { }
+        format.json { render :json => {:user_story => @user_story,
+                                       :user_story_id => @user_story.id}
+        }
       else
         format.html { render :new }
         format.json { render json: @user_story.errors, status: :unprocessable_entity }
@@ -41,9 +44,10 @@ class UserStoriesController < ApplicationController
   # PATCH/PUT /user_stories/1
   # PATCH/PUT /user_stories/1.json
   def update
+    @p = UserStory.find(params[:id]).project_id
     respond_to do |format|
       if @user_story.update(user_story_params)
-        format.html {}
+        format.html { redirect_to controller: 'projects', action: 'us', id: @p}
         format.json { render :show, status: :ok, location: @user_story }
       else
         format.html { render :edit }
@@ -51,13 +55,14 @@ class UserStoriesController < ApplicationController
       end
     end
   end
+  
 
   # DELETE /user_stories/1
   # DELETE /user_stories/1.json
   def destroy
     @user_story.destroy
     respond_to do |format|
-      format.html { redirect_to user_stories_url, notice: 'User story was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: root_path) }
       format.json { head :no_content }
     end
   end
@@ -70,7 +75,7 @@ class UserStoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_story_params
-      params.require(:user_story).permit(:project_id, :creator_id, :title, :state)
+      params.require(:user_story).permit(:project_id,:worker_id, :description, :deadline, :creator_id, :title, :state)
     end
 
     

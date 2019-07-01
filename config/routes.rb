@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   get 'projects/:id/chat' => 'chats#index'
 
-  get 'projects/:id/user_stories' => 'lists#index'
+  get 'projects/:id/user_stories' => 'projects#us'
 
   post 'projects/:id/chat' => 'chats#newMessage'
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   post 'projects/:id/sendrequest' => 'projects#sendRequest'
 
   post 'projects/:id/removemember' => 'projects#removeMember'
+
 
   resources :projects
 
@@ -38,6 +39,11 @@ Rails.application.routes.draw do
   resources :users
   resources :lists
   resources :user_stories
+
+  get 'user_stories/:id/destroy' => 'user_stories#destroy'
+  post 'user_stories/:id/edit' => 'user_stories#update'
+  put 'user_stories/:id' => 'user_stories#update'
+  
 
   get 'lists' => 'lists#index'
 
