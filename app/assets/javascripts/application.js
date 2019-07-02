@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require popper
 //= require bootstrap-sprockets
+//= require bootstrap
 //= require angular
 //= require angular-drag-and-drop-lists/angular-drag-and-drop-lists.js
+//= require angular-route
 //= require_tree .

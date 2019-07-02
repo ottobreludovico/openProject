@@ -1,43 +1,123 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-10 col-md-10">
-            <%= image_tag current_user.gravatar_url %>
-        </div>
-        <div class="col-sm-20 col-md-20">
-            <blockquote>
-                <p><%= current_user.first_name %> </p> <small><cite title="Source Title"><%= current_user.location %> <i class="glyphicon glyphicon-map-marker"></i></cite></small>
-            </blockquote>
-            <p> <i class="glyphicon glyphicon-envelope"></i> <%= current_user.email %>
-                <br /> <i class="glyphicon glyphicon-globe"></i>
-                <br /> <i class="glyphicon glyphicon-gift"></i> <%= current_user.birthday %></p>
-        </div>
-        <div class="col-sm-20 col-md-20">
-          description: <%= current_user.description %>
-          Your Projects:
-
-          <% current_user.projects.each do |project| %>
-            <%= link_to project.title, project_path(project) %>
-          <% end %>
-
-
-        <%= button_to 'Edit', edit_user_registration_path, :method => :get %>
 
 
 
 
 
-        </div>
 
 
-<!-------
-        <div class="col-sm-20 col-md-20">
-            <img src=
-            alt="" class="img-rounded img-responsive" />
-        </div>  ------>
 
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <%= button_to 'Edit Profile', edit_user_registration_path, :method => :get %>
+
+
+
+        <div class="container emp-profile">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="profile-img">
+                                      <%= image_tag current_user.gravatar_url %>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="profile-head">
+                                            <h5>
+                                              <%= current_user.username %>
+                                            </h5>
+
+
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Info</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-8">
+                                <div class="tab-content profile-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>First Name</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><%= current_user.first_name %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Last Name</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><%= current_user.last_name %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Email</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><%= current_user.email %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Birthday</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><%= current_user.birthday %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Location</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                      <blockquote>
+                                                        <p> <small><cite title="Source Title"><%= current_user.location %><i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                                                      </blockquote>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>About</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><%= current_user.description %></p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Your Projects</label>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <% current_user.projects.each do |project| %>
+                                                          <%= link_to project.title, project_path(project) %>
+                                                        <% end %>
+                                                    </div>
+                                                </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>

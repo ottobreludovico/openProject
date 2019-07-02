@@ -4,7 +4,20 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
-    @lists = List.all
+    @idUser = 1
+		@idProject = params[:id]
+		@project = Project.find(params[:id])
+    	@participants = Join.where('project_id = ?', params[:id]).where('accepted = ?', 1)
+    	if current_user.present?
+	      @member = Join.where('project_id = ?', params[:id]).where('user_id = ?', current_user.id).where('accepted = ?', 1)
+	      if @member.present?
+	        @isMember = true
+	      else
+	        @isMemeber = false
+	      end
+	    else
+	      @isMemeber = false
+	    end
   end
 
   # GET /lists/1

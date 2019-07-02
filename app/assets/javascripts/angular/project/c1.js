@@ -2,14 +2,14 @@ var app = angular.module('angularOpenProject');
 
 app.controller("c1", ["$http", "$scope" , function($http, $scope){
   
-  
-/*
-  this.routeSub = this.route.params.subscribe(params => {
-    console.log(params);
-    console.log(+params['id']);
-  }); 
-*/
 var user;
+var currentProject;
+
+function back (){
+  window.location.reload(); 
+};
+
+$scope.today=new Date().toLocaleDateString();
 
 function editState(item,new_state){
   var data= {
@@ -17,113 +17,97 @@ function editState(item,new_state){
       "state": new_state
     }
   }
-  $http.put('/user_stories/' + item.id, data);
-}
-
-/*
-  var getData = function (id,index,param) {
-    return $http({
-
-      method: 'GET',
-      url: '/users/'+id+'.json'
-
-    }).then(function (user){
-      console.log(user.data.first_name);
-      if(index==0){
-        param.creator=user.data.first_name;
-      }else{
-        param.worker=user.data.first_name;
-      }  
-      //console.log(user.data);           
-    },function (error){
-      alert("Si è verificato un errore!");
+  $http.put('/user_stories/'+item.id+'.json', data).then(function (response){
+    console.log("cambio di stato");
+  },function(error){
+    console.log(error);
   });
 }
-  function getUser(id,index,param){
-    $http({
 
-          method: 'GET',
-          url: '/users/'+id+'.json'
-
-        }).then(function (user){
-          console.log(user.data.first_name);
-          if(index==0){
-            param.creator=user.data.first_name;
-          }else{
-            param.worker=user.data.first_name;
-          }  
-          //console.log(user.data);           
-
-        },function (error){
-
-          alert("Si è verificato un errore!");
-    });
-  }*/
-
-
-  $scope.title ="drag and drop";
-
-  $scope.lists = [ {id: 1, name: "TODO", cards: []},
-  {id: 2, name: "DOING",  cards: []},
-  {id: 3, name: "DONE", cards: []}]
-
-  var currentProject=1;
-
-	$http({
-		method: 'GET',
-		url: '/projects/1.json'
-	}).then(function(data){
-    console.log(data);
-    user=data.data.currentuser;
-		for( var i = 0; i < data.data.stories.length; i ++ ){
-      /*var info ={
-        info :  "",
-        creator: "",
-        worker: ""
-      };*/
-
-      if(data.data.stories[i].state==0){
-       //info.creator=getData(stories.data[i].creator_id,0,info);
-       //info.worker=getData(stories.data[i].worker_id,1,info);
-       //info.info=stories.data[i];
-       //$scope.lists[0].cards.push(info);
-       console.log(data.data.stories[i]);
-       $scope.lists[0].cards.push(data.data.stories[i]);
-     
-      }else if(data.data.stories[i].state==1){
-       //info.creator=getUser(stories.data[i].creator_id,0,info);
-       //info.worker=getUser(stories.data[i].worker_id,1,info);
-       //info.info=stories.data[i];
-       //$scope.lists[1].cards.push(info);
-       $scope.lists[1].cards.push(data.data.stories[i]);
-
-      }else if(data.data.stories[i].state==2){
-       //info.creator=getUser(stories.data[i].creator_id,0,info);
-       //info.worker=getUser(stories.data[i].worker_id,1,info);
-       //info.info=stories.data[i];
-       //$scope.lists[2].cards.push(info);
-       $scope.lists[2].cards.push(data.data.stories[i]);
-
-      }
-    }
+$scope.remove= function(id,item,index){
+  $http.get('/user_stories/'+id+'/destroy').then(function (response){
+    item.cards.splice(index, 1)
+    console.log("rimosso");
   },function(error){
-		console.log(error);
-	});  
+    console.log(error);
+  });
+}
+
+$scope.lists = [ {id: 1, name: "TODO", cards: []},
+{id: 2, name: "DOING",  cards: []},
+{id: 3, name: "DONE", cards: []}]
+
+
+$scope.init = (project_id) => {
+  $http({
+  method: 'GET',
+  url: '/projects/'+project_id+'.json'
+}).then(function(data){
+  currentProject=project_id;
+  user=data.data.currentuser;
+
+  for( var i = 0; i < data.data.stories.length; i ++ ){
+
+    if(data.data.stories[i].state==0){
+      
+      $scope.lists[0].cards.push(data.data.stories[i]);
+      scaduto(data.data.stories[i]);
+    }else if(data.data.stories[i].state==1){
+      
+      $scope.lists[1].cards.push(data.data.stories[i]);
+
+    }else if(data.data.stories[i].state==2){
+      
+      $scope.lists[2].cards.push(data.data.stories[i]);
+
+    }
+  }
+},function(error){
+  console.log(error);
+});
+}
+  
+
+$scope.toUser = function(card_id ,id){
+  var data= {
+    "user_story": {
+      "worker_id": id
+    }
+  }
+  $http.put('/user_stories/'+card_id+'.json' , data).then(function (response){
+    console.log(response);
+    //back();
+  },function(error){
+    console.log(error);
+  });
+}
+
+$scope.newDate = function(card_id, date){
+  var data= {
+    "user_story": {
+      "deadline": date.deadline
+    }
+  }
+  console.log(date.deadline);
+  $http.put('/user_stories/'+card_id+'.json' , data).then(function (response){
+    console.log(response);
+    date.deadline="";
+  },function(error){
+    console.log(error);
+  });
+}
+
    
    $scope.dropCallbackItems = function(index, item, external, ind){
      console.log(index, item, external, ind)
    };
    
     $scope.dropCallback = function(index, item, external, ind) {
-	  editState(item,index);
+	    editState(item,index);
       console.log("drop",index, item, external, ind );
       console.log("drop", $scope.lists);
       $scope.draggedTo = index.toString()
       $scope.draggedItem = item;
-      //do something here with list array and information
-      // index is index of lists object where is card is droped
-      //item is card object 
-      //external is $scope.lists
       return item;
     };
     
@@ -133,30 +117,38 @@ function editState(item,new_state){
       $scope.draggedFrom = ind.toString()
     };
 
-    $scope.newCard = function(){
-    
-      var title = document.getElementById('title').value;
-      var description = document.getElementById('description').value;
+    $scope.newCard = function(c){
       var data={
         "user_story": {
           "creator_id": user,
-          "worker_id": null,
-          "project_id": 1,
-          "title": title,
-          "description": description,
-          "deadline": null,
+          "project_id": currentProject,
+          "title": c.title,
+          "description": c.description,
           "state": 0
            } 
       }
-      $http.post('/user_stories', data).then(function (response){
-              console.log(response);
+      $http.post('/user_stories.json', data).then(function (response){
+              data.user_story.id=response.data.user_story_id;
               $scope.lists[0].cards.push(data.user_story);
-              document.getElementById('title').value="";
-              document.getElementById('description').value="";
+              $scope.c.title="";
+              $scope.c.description="";
               console.log(data);
             },function (error){
-        
+        console.log(error);
       });
     }
   
 }]);
+
+$scope.today=new Date().toLocaleDateString();
+$scope.newdate;
+
+function scaduto (deadline){
+  var newdate = deadline.deadline.toString().split("-").reverse().join("/");
+  var today=new Date().toLocaleDateString();
+  var n=newdate.toString().split("/");
+  var t=today.toString().split("/");
+  console.log(n[2]);
+  console.log(t[2]);
+  return n[2] == t[2];
+}
