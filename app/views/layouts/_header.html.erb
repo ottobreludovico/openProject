@@ -46,7 +46,7 @@
 
                         <% if user_signed_in? %>
 
-                            <%= link_to user_path(current_user), class: "nav-item item" do%>
+                            <%= link_to user_path(current_user), class: "nav-item item", :id => "user_name" do%>
                                 <%= current_user.first_name %>
                             <% end %>
                             <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item item" %>

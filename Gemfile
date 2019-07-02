@@ -79,6 +79,13 @@ gem 'omniauth-google-oauth2'
 
 group :test do
   gem 'cucumber-rails', require: false
+  gem 'rspec'
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+end
+
+group :development, :test do
+  # RSpec
+  gem 'rspec-rails', '~> 3.7'
+  gem 'factory_bot_rails'
 end
