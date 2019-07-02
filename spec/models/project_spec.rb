@@ -1,33 +1,35 @@
 require "rails_helper"
 
 RSpec.describe User, :type => :model do
-  
-  before(:all) do
-    @user = create(:user)
-  end
+    before(:all) do
+        @user = create(:user)
+    end
 
-  it "is valid with valid attributes" do
-    expect(@user).to be_valid
-  end
+    it "create" do
 
-  it "has a unique email" do
-    user2 = build(:user, first_name: "Giovanni")
-    expect(user2).to_not be_valid
-  end
+        project = Project.new(:teamleader_id => @user.id,
+                              :title => "IOS project", 
+                              :description => "This is my first project on this web site.........",
+                              :number_of_member => "3")
+        expect(project).to be_valid
 
-  it "has a unique email" do
-    user2 = build(:user, first_name: "Giovanni")
-    expect(user2).to_not be_valid
-  end
+    end
 
-  it "is not valid without a password" do 
-    user2 = build(:user, password: nil)
-    expect(user2).to_not be_valid
-  end
+    it "is not valid without a title" do 
+        project2 = Project.new(:teamleader_id => @user.id,
+                               :title => nil, 
+                               :description => "This is my first project on this web site.........",
+                               :number_of_member => "3")
+        expect(project2).to_not be_valid
+    end
 
-  it "is not valid without a password confirmation" do 
-    user2 = build(:user, password_confirmation: nil)
-    expect(user2).to_not be_valid
-  end
+    it "is not valid without a description" do 
+        project2 = Project.new(:teamleader_id => @user.id,
+                               :title => "IOS project", 
+                               :description => nil,
+                               :number_of_member => "3")
+        expect(project2).to_not be_valid
+    end
+
 
 end
