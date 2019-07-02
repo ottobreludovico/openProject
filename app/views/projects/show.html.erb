@@ -6,7 +6,7 @@
         <div class="card" style="width: 100%;">
           <div class="card-body">
             <p class="card-text"><%= @project.description %></p>
-            <p class="card-text">Participants: 3 of <%= @project.number_of_member %></p>
+            <p class="card-text">Participants: <%= @participants.length + 1 %> of <%= @project.number_of_member %></p>
           </div>
         </div>
     </div>
