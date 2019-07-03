@@ -12,7 +12,6 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_many :projects, foreign_key: 'teamleader_id'
-  has_many :user_stories, class_name: 'UserStory'
   has_many :joins
 
   def self.from_omniauth(auth)

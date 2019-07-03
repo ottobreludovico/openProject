@@ -1,4 +1,6 @@
 class ChatsController < ApplicationController
+	before_action :authenticate_user!
+	
 	def index
 		@messages = ChatMessage.where('project_id = ?', params[:id])
 		@idUser = 1
