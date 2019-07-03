@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_28_140424) do
+ActiveRecord::Schema.define(version: 2019_07_03_151626) do
 
   create_table "cards", force: :cascade do |t|
     t.integer "list_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2019_06_28_140424) do
     t.date "birthday"
     t.text "location"
     t.string "username"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

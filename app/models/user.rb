@@ -7,6 +7,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable
+  
+  enum role: [:user, :advanceduser, :admin]
+  after_initialize :set_default_role, :if => :new_record?
 
   has_many :projects, foreign_key: 'teamleader_id'
   has_many :user_stories, class_name: 'UserStory'
@@ -20,6 +23,18 @@ class User < ApplicationRecord
       user.email =auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
+  end
+
+  def set_default_role
+    self.role ||= :user
+  end
+
+  def set_admin_role
+    self.role ||= :admin
+  end
+
+  def set_advanceduser_role
+    self.role ||= :advanceduser
   end
 
 end

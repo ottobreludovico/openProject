@@ -51,7 +51,7 @@ $scope.init = (project_id) => {
     if(data.data.stories[i].state==0){
       
       $scope.lists[0].cards.push(data.data.stories[i]);
-      scaduto(data.data.stories[i]);
+      
     }else if(data.data.stories[i].state==1){
       
       $scope.lists[1].cards.push(data.data.stories[i]);
@@ -130,6 +130,7 @@ $scope.newDate = function(card_id, date){
       $http.post('/user_stories.json', data).then(function (response){
               data.user_story.id=response.data.user_story_id;
               $scope.lists[0].cards.push(data.user_story);
+              alert("User story aggiunta correttamente");
               $scope.c.title="";
               $scope.c.description="";
               console.log(data);
@@ -139,16 +140,3 @@ $scope.newDate = function(card_id, date){
     }
   
 }]);
-
-$scope.today=new Date().toLocaleDateString();
-$scope.newdate;
-
-function scaduto (deadline){
-  var newdate = deadline.deadline.toString().split("-").reverse().join("/");
-  var today=new Date().toLocaleDateString();
-  var n=newdate.toString().split("/");
-  var t=today.toString().split("/");
-  console.log(n[2]);
-  console.log(t[2]);
-  return n[2] == t[2];
-}
