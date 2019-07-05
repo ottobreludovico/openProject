@@ -121,16 +121,17 @@ $scope.newDate = function(card_id, date){
       var data={
         "user_story": {
           "creator_id": user,
+          "worker_id": null,
           "project_id": currentProject,
           "title": c.title,
           "description": c.description,
+          "deadline": null,
           "state": 0
            } 
       }
       $http.post('/user_stories.json', data).then(function (response){
               data.user_story.id=response.data.user_story_id;
               $scope.lists[0].cards.push(data.user_story);
-              alert("User story aggiunta correttamente");
               $scope.c.title="";
               $scope.c.description="";
               console.log(data);

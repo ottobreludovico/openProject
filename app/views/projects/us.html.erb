@@ -37,12 +37,12 @@
                     <div id="dLabel" ng-if="<%=@current_user.id%>==card.worker_id"  class="s" data-toggle="dropdown">
                        {{card.title}}
                     </div>
-                    <div id="dLabel" ng-if="<%=@current_user.id%>!=card.worker_id" data-toggle="dropdown">
+                    <div name="dropdown" id="dLabel" ng-if="<%=@current_user.id%>!=card.worker_id" data-toggle="dropdown">
                        {{card.title}}
                     </div>
                     <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
                     <li><a class="dropdown-item" href="/user_stories/{{card.id}}">Visualizza</a></li>
-                    <li><a class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" href="/user_stories/{{card.id}}/edit">Modifica</a></li>
+                    <li><a name="Modifica" class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" href="/user_stories/{{card.id}}/edit">Modifica</a></li>
                     <li><a class="dropdown-item <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>" ng-click="remove(card.id,item,$index)">Elimina</a></li>
                     <li class="divider"></li>
                     <li class="dropdown-submenu <%= @current_user != @project.teamleader ? 'disabled' : 'enabled'%>">
@@ -51,7 +51,7 @@
                         <form>
                           <div class="form-group">
                           <div style="font-size:10px;">Entro il {{card.deadline}}</div>
-                          <input ng-model="date.deadline" type="text" placeholder='aaaa-mm-gg'/>
+                          <input name="deadline" ng-model="date.deadline" type="text" placeholder='aaaa-mm-gg'/>
                           </div>
                           <button ng-click="newDate(card.id,date)" class = "btn-sm btn btn-outline-secondary" id="btns">Inserisci</button>
                         </form>
@@ -74,9 +74,9 @@
       <div class="row" style="margin-top:20px;">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-          <input type="text" ng-model="c.title" placeholder="Titolo" />
-          <input type="text" ng-model="c.description" placeholder="Descrizione" />    
-          <button ng-click='newCard(c)' class = "bg-dark" id="btns">Inserisci</button>
+          <input type="text" name="titolo" ng-model="c.title" placeholder="Titolo" />
+          <input type="text" name="descrizione" ng-model="c.description" placeholder="Descrizione" />    
+          <button ng-click='newCard(c)' class = "bg-dark" id="btns">InserisciUS</button>
         </div>                
        <div class="col-md-4"></div>  
       </div>

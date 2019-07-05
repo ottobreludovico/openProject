@@ -10,7 +10,10 @@
 
 <p>
   <strong>Worker:</strong>
-  <%= @user_story.worker.first_name %>
+  <% if @user_story.worker == nil %>
+  <% else%>
+   <%= @user_story.worker.first_name %>
+  <% end%>
 </p>
 
 <p>

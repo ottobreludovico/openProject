@@ -49,7 +49,7 @@
                             <%= link_to user_path(current_user), class: "nav-item item", :id => "user_name" do%>
                                 <%= current_user.first_name %>
                             <% end %>
-                            <%= link_to 'logout', destroy_user_session_path, :method => :delete, class: "nav-item item" %>
+                            <%= link_to 'logout', destroy_user_session_path, :name =>'logout', :method => :delete, class: "nav-item item" %>
 
                         <% else %>
                             <%= link_to 'signup', signup_path , class: "nav-item item" %>

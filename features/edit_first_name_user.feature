@@ -1,8 +1,8 @@
-Feature: Edit User
+Feature: Edit First Name User
 
    As a logged user
    So that I can access my edit page
-   I want to be able to update my profile
+   I want to be able to update my first name
 
    Scenario: I want to edit my profile
     Given I am a logged in user

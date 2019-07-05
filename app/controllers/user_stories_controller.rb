@@ -1,6 +1,7 @@
 class UserStoriesController < ApplicationController
   before_action :set_user_story, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
 
   # GET /user_stories
   # GET /user_stories.json
@@ -55,6 +56,8 @@ class UserStoriesController < ApplicationController
       end
     end
   end
+  
+  
   
 
   # DELETE /user_stories/1
