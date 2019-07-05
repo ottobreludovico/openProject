@@ -15,6 +15,15 @@ RSpec.describe User, :type => :model do
 
     end
 
+    it "is not valid because user's role must be 1" do
+        user2 = build(:user, :role => 0)
+        project2 = Project.new(:teamleader_id => user2.id,
+                               :title => "IOS project", 
+                               :description => "This is my first project on this web site.........",
+                               :number_of_member => "3")
+        expect(project2).to_not be_valid
+    end
+
     it "is not valid without a title" do 
         project2 = Project.new(:teamleader_id => @user.id,
                                :title => nil, 
