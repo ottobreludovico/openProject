@@ -1,8 +1,3 @@
-    
-Given("I am on the discussions page") do
-    visit discussions_path
-end
-
 Given("I am on the login page") do
     @user = User.create!({:email => 'test@lol.com', :password => 'lol.123', :password_confirmation => 'lol.123', :first_name => 'test', :last_name => 'test', :description => 'Desc test'})
     visit login_path
@@ -12,9 +7,25 @@ Given("I am on the home page") do
     visit home_path
 end
 
-Given("there is at least a discussion") do
-    discussion = Discussion.create!(:title => 'Test title', :body => 'Test body')
-    expect(discussion).not_to be_nil
+Given("I am on the project page") do
+    @user = User.create!({:email => 'test2@lol.com', :password => 'lol.123', :password_confirmation => 'lol.123', :first_name => 'test', :last_name => 'test', :description => 'Desc test'})
+    @project = Project.create!({:teamleader_id => @user.id, :title => "Test Project", :description => "Test description Test description", :number_of_member => 5})
+    visit project_path(@project.id)
+end
+
+Given("I am on the project chat page") do
+    @user = User.create!({:email => 'test2@lol.com', :password => 'lol.123', :password_confirmation => 'lol.123', :first_name => 'firstname', :last_name => 'lastname', :description => 'Desc test'})
+    @project = Project.create!({:teamleader_id => @user.id, :title => "Test Project", :description => "Test description Test description", :number_of_member => 5})
+    visit ("/projects/" + @project.id.to_s + "/chat")
+end
+
+Given("I am on the project page as teamleader") do
+    @project = Project.create!({:teamleader_id => @current_user.id, :title => "Test Project", :description => "Test description Test description", :number_of_member => 5})
+    visit project_path(@project.id)
+end
+
+Given ("I wait for {string} seconds") do |n|
+  sleep(n.to_i)
 end
 
 When("I follow {string}") do |string|
@@ -27,6 +38,10 @@ end
 
 When("I press {string}") do |string|
     click_button(string)
+end
+
+When ("I reload the page") do
+  visit [ current_path, page.driver.request.env['QUERY_STRING'] ].reject(&:blank?).join('?')
 end
 
 Then("I should see {string}") do |string|
