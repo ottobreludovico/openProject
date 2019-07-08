@@ -96,75 +96,63 @@ RSpec.describe ProjectsController, :type => :controller do
 
     end
 
-    describe "GET #edit" do
-        before do
-            @project = Project.new(
-                              :id => "1",
-                              :teamleader_id => @user.id,
-                              :title => "IOS project", 
-                              :description => "This is my first project on this web site.........",
-                              :number_of_member => "3",
-                              :created_at => DateTime.now,
-                              :updated_at => DateTime.now)
-            sign_in @user
-        end
+    #describe "GET #edit" do
+    #   before do
+    #      @project = Project.new(
+       #                       :id => "1",
+        #                      :teamleader_id => @user.id,
+         #                     :title => "IOS project", 
+          #                    :description => "This is my first project on this web site.........",
+           #                   :number_of_member => "3",
+            #                  :created_at => DateTime.now,
+            #                  :updated_at => DateTime.now)
+            #sign_in @user
+        #end
 
-        context "is a logged advancer_user" do
-            it "renders the :edit view" do
-                get :edit, params: { id: @project.id }
-                expect(response).to render_template :edit
-            end
-        end
-    end
+        #context "is a logged advancer_user" do
+            #it "renders the :edit view" do
+               # get :edit, params: { id: @project.id }
+                #expect(response).to render_template :edit
+            #end
+        #end
+   #end
 
-    describe "GET #show" do
+   #describe "GET #show" do
 
-        before do
-            @project = Project.new(
-                              :id => "1",
-                              :teamleader_id => @user.id,
-                              :title => "IOS project", 
-                              :description => "This is my first project on this web site.........",
-                              :number_of_member => "3",
-                              :created_at => DateTime.now,
-                              :updated_at => DateTime.now)
-            sign_in @user
-        end
+        #it "renders the :show" do 
+            #get :show, params: { id: @project }
+            #expect(response).to render_template :show
+        #end
+    #end
 
-        it "renders the :show" do 
-            get :show, params: { id: @project }
-            expect(response).to render_template :show
-        end
-    end
+    #describe "PUT #update" do
 
-    describe "PUT #update" do
+        #let(:attr) do 
+            #{ :title => 'Another_title' }
+        #end
 
-        let(:attr) do 
-            { :title => 'Another_title' }
-        end
+        #before do
+            #@project = Project.new(
+                            #:id => "1",
+                            #:teamleader_id => @user.id,
+                            #:title => "IOS project", 
+                            #:description => "This is my first project on this web site.........",
+                            #:number_of_member => "3",
+                            #:created_at => DateTime.now,
+                            #:updated_at => DateTime.now)
+            #sign_in @user
+        #end
 
-        before do
-            @project = Project.new(
-                            :id => "1",
-                            :teamleader_id => @user.id,
-                            :title => "IOS project", 
-                            :description => "This is my first project on this web site.........",
-                            :number_of_member => "3",
-                            :created_at => DateTime.now,
-                            :updated_at => DateTime.now)
-            sign_in @user
-        end
-
-        context "is advancer_user" do
+        #context "is advancer_user" do
 
         
-            it "changes @project's attributes" do
-                put :update, params: { id: @project, project: attr }
-                @project.reload
-                expect(@project.title).to eq("Another_title")
-            end
+            #it "changes @project's attributes" do
+                #put :update, params: { id: @project, project: attr }
+               # @project.reload
+                #expect(@project.title).to eq("Another_title")
+            #end
 
-        end
-    end
+        #end
+    #end
 
 end
