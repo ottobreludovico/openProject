@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   end
 
   def us
-    @idUser = 1
+    @idUser = current_user.id
 		@idProject = params[:id]
 		@project = Project.find(params[:id])
     	@participants = Join.where('project_id = ?', params[:id]).where('accepted = ?', 1)

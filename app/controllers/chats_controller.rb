@@ -3,7 +3,7 @@ class ChatsController < ApplicationController
 	
 	def index
 		@messages = ChatMessage.where('project_id = ?', params[:id])
-		@idUser = 1
+		@idUser = current_user.id
 		@idProject = params[:id]
 		@project = Project.find(params[:id])
     	@participants = Join.where('project_id = ?', params[:id]).where('accepted = ?', 1)

@@ -22,7 +22,7 @@ function getToken() {
   return '';
 }
 
-function send(project_id){
+function send(project_id, user_id){
 	var xhr = new XMLHttpRequest();
 	xhr.onload = function (e) {
 	  if (xhr.readyState === 4) {
@@ -53,5 +53,5 @@ function send(project_id){
 	xhr.open("POST", "/projects/" + project_id + "/chat", true);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.setRequestHeader("X-CSRF-Token", getToken());
-	xhr.send("body=" + document.getElementById('body').value + "&user=1");
+	xhr.send("body=" + document.getElementById('body').value + "&user=" + user_id);
 }
