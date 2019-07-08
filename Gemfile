@@ -88,4 +88,5 @@ group :development, :test do
   # RSpec
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails', '~> 5.0.2'
+  gem 'rails-controller-testing'
 end
