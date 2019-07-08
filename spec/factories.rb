@@ -1,11 +1,11 @@
 FactoryBot.define do
   
     factory :user do
-        first_name { 'Pino' }
-        last_name { 'Rossi' }
-        email { 'mario.rossi.129@libero.it' }
-        password { 'miapassword' }
-        password_confirmation { 'miapassword' }
+        first_name { 'Name' }
+        last_name { 'Surname' }
+        email { 'user1@user.it' }
+        password { 'password' }
+        password_confirmation { 'password' }
         role { 1 }
     end
 
